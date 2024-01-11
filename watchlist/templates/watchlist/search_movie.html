@@ -1,0 +1,19 @@
+    <h1>Movies List</h1>
+
+    <ul id="movie-list">
+
+        {% if movies|length == 0 %}
+            <p>No movies found</p>
+        {% else %}
+     
+         {% for movie in movies %}
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{movie.poster}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{movie.title}}</h5>
+        <p class="card-text">{{movie.rating}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+     {% endfor %}    {% endif %}
+    </ul>

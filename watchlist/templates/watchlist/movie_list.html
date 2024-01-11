@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Movies List</title>
+</head>
+<body>
+    <div class=" grid text-center">
+
+
+    <form action="{% url 'search' %}" method="GET">
+        <input type="text" name="query" placeholder="Search">
+    
+    <button type="submit">Search</button>
+    </form>
+
+
+  <div class="g-col-lg-3">
+ {% for movie in movies %}
+
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{movie.poster}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{movie.title}}</h5>
+        <p class="card-text">{{movie.rating}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+        {% endfor %}
+    </ul>
+ 
+<form id="movies-form" action="/movies/" method="GET">
+    <input type="hidden" name="page" id="page" value="{{ page|default:1 }}">
+    <button id="load-more" type="button" onclick="loadMore()">Load More</button>
+</form>
+    <script>
+      function loadMore() {
+        var form = document.getElementById('movies-form');
+        var nextPage = parseInt(document.getElementById('page').value) + 1;
+        document.getElementById('page').value = nextPage;
+          console.log(form.action + "?page=" + nextPage);
+        form.submit();
+    }    </script>
+
+</div>
+</body>
+</html>
+
